@@ -1,0 +1,28 @@
+Vector DB Notes
+
+semantic search - using the context to search instead of keyword matchings 
+	- it uses embeddings to do semantic search 
+	we will have a vector containing real values each element in that vector corresponds to the particular feature of the context (semantic = context)
+	for eg if How many employees in Apple?
+		if the context is Apple (Company)
+		then the features like is_phone, has_stock will have values of embedding high and features like has_color, is_fruit will have 0 wrt this context
+	using this embeddings we can find the similar words based on context and not lexographical
+	KING - MAN + WOMAN = QUEEN
+
+Words embedding: represent words in vector
+	techniques - Word2Vec, BERT, GloVe
+other embeddings are sentence, image, audio embeddings
+
+how to compare Embeddings ?
+	- Cosine similarity
+	- Euclidean distance
+	- Dot Product
+
+when we search a query the query is also converted as a embedding vector which is compared to the vectors stored in the DB (comparison Is done by cosine similarity)
+	- it cosine similarity value is closer to 1 then it might be the similar context
+
+Locality Sensitive Hashing -
+
+	in traditional db we have millions of records for which linear search will take hella lot time
+	for that we use indexing particularly HASH functions which create buckets of similar embeddings
+	so we can use the hash function to map the query to the matching bucket of similar embeddings

@@ -1,0 +1,148 @@
+NEURAL NETWORKS NOTES
+
+06/05/25
+
+
+Neural Networks - 
+	it is a computational model build inspired from the structure and function of the human brain
+	it is designed to make predictions and recognize patterns based on data
+	
+	it is a type of ML algo, used in deep learning, capable of learning complex non-linear relationships from large datasets
+	
+convolutional NN - img recognition
+Long short-term memory NN - speech recognition
+plain vanilla - one of the simplest forms 
+
+So neural networks, from the name we can understand there are neurons which are connected (network)
+what is NEURON ?
+	neuron is a computational unit that holds a number (0 to 1)
+
+	- number inside a neuron -> activation
+
+	e.g, in a plain vanilla model - if there are 28 x 28 pixels, then there are 28*28 = 784 neurons,
+	where each neuron has an activation value
+
+there are 
+	- input layers
+	- hidden layers
+	- output layers (final prediction)
+
+activations in one layer determines the activation in next layer
+what does multi layer does ?
+	it takes output from each layer and builds on it (1st layer input say pixels, second layer we identify curves and edges
+	, 3rd layer identifies combination of patterns,... last layer identifies the object)
+e.g in plain vanilla if we take 9 as simple input as pixels then we identify each edges in 1st layer which corresponds to
+edges and loops in 2nd layer to which is in turn recognized as 9 In final layer
+
+speech recognition - parsing speech, involves taking raw audio and picks out distinct sound
+which combines into syllables into words into phrases and so on
+
+WEIGHTS: parameters that tell how much each neuron is participating in the prediction 
+in digit prediction we find weighted sum of neurons then the pixels having more weight alone
+will lit the pixels, for this we suppress the function in bw 0 to 1  (as activations must be bw 0 and 1)
+
+we use sigmoid function to map this - we squish the weighted sum
+output = f(w1a1 + w2a2 +.... + wnan)
+ai, input
+wi, weights
+f, activation function eg sigmoid func
+
+bias - number which activated neurons when input alone is not enough
+eg,
+	If it's very sunny, you go out.
+	If it's not very sunny, you might still go out... 
+	maybe you're just in a good mood today.
+
+	here mood is the bias
+output = f(w1a1 + w2a2 +.... + wnan - b)
+each neuron is connected with every other neurons in first previous layer and have separate weights and bias
+
+LEARNING - finding right bias and weights
+OP = WEIGHT MATRIX (EACH row is associated with single column vector of activations)* INPUT VECTOR + BIAS VECTOR
+of the resulting vector OP, apply sigmoid
+a(1) = sigma(Wa(0)+b) (0),(1) -> layer no.
+we can now assume NEURONS AS FUNCTIONS that take output of previous layer and maps output for next layer
+
+ReLU - rectified linear unit - replacement for sigmoid func
+	ReLU(a) = max(0, a)
+	-ve means inactive
+	if a is +ve we get a itself f(a)=a
+
+07/05
+
+cost function/error/loss function
+cost = summation (actual output - required output)^2/n
+when the cost is near to 0 (least of all costs), we get a better network
+we use gradient descent to calculate the least cost for which the cost is minimum (local minimum)
+
+we find -ve gradient vector that is the values that is needed to be added for the input weights to get the better result
+
+the value which have the greatest magnitude is very  important for us, because nudging it slightly will result a greater change in the cost 
+
+
+labelled (handwritten, actual meaning)
+un-labelled (handwritten)
+
+backpropogation : by going backwards and adjusting the weights and biases to reduce cost (we nudge the weights and bias)
+
+
+MICROGRAD - tiny Autograd engine used to implement backpropogation (tuning the gradients using bias and weights)
+
+we are using scalar values not n dimensional tensors
+
+micrograd VALUE IS a data structure used to store the activation values
+
+we first define Value Class and the operations: 
+	1. __init__ -> initialize data
+	2. __repr__ -- to display function'
+	3. __add__ -> addition operator
+	4. __mul__ -> multiply two Values
+	5. _children = ()
+		inside init - _prev = set(_children) : initialize to empty set this will have pointers to child nodes
+	6. _op -> gives the operator symbol
+	7. digraph - labels
+	8. gradients : last node = 1
+	9. chain rule : dL/dc = dL/dd.dd/dc
+	10. tanh
+	11. topological sort 
+	12. bug that overwrites the gradient if a single variable is used more than once : resolution is to use +=
+	13. rmul : use to interchange mul order
+
+tensors - n-dimensional arrays of scalars
+import torch
+x = torch.tensor([1,2,3]) - 1d
+x.item() - takes only the data, works only for single valued tensors
+if x has more than 1 value, use index like x[1].item()
+
+cross entropy loss
+fine tuning
+loss function used for accuracy of pred
+then we tune the weights backward to optimize the loss
+
+
+
+x1 = Value(2.0, label = 'x1')
+x2 = Value(0.0, label='x2')
+
+w1 = Value(-3.0, label = 'w1')
+w2 = Value(1.0, label = 'w2')
+
+b = Value(6.7, label = 'b')
+
+x1w1 = x1*w1; x1w1.label = 'x1*w1'
+x2w2 = x2*w2; x2w2.label = 'x2*w2'
+
+x1w1x2w2 = x1w1 + x2w2; x1w1x2w2.label = 'x1*w1 + x2*w2'
+n = x1w1x2w2 + b; n.label = 'n'
+#----------
+#o = n.tanh(); o.label = 'o'
+e = (2*n).exp()
+o = (e - 1) / (e + 1)
+#----------
+o.grad = 1.0
+o.backward()
+
+dot = draw_dot(o)
+dot.render('graph_output', format='png', view=True)
+
+

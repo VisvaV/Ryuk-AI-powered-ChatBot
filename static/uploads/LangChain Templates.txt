@@ -1,0 +1,19 @@
+LangChain Templates
+
+Template: reference architecture
+| Term      | What It Is                                       | Key Use                          |
+| --------- | ------------------------------------------------ | -------------------------------- |
+| Framework | Pre-built structure & tools to build apps faster | Speeds up software development   |
+| Template  | Starting layout or structure                     | Used inside frameworks sometimes |
+| API       | Way for programs to talk to each other           | Lets apps use services or data   |
+
+
+LangChain is a framework to build applications using LLms
+
+LLMs are stateless first : they don't remember past conversations, no memory, cannot surf the internet like google search
+but with LangChain we can make the LLms to use memory, use google search, calculators, etc
+
+prompt template: dynamic prompts
+memory: stores chat conversation
+chains: connects steps together
+agents: lets llm choose what tool to use and when

@@ -1,0 +1,20 @@
+NLP Notes
+
+unstructured vs structured : human understandable, machine understandable
+NLU (Natural Language Understanding): Unstructured to structured
+NLG generation : structured to unstructured
+
+NLP is used for 
+	Machine Translation
+	virtual assistance/chatbot
+	sentiment analysis
+	spam detection
+
+tokenization: breaking the input string into chunks of tokens
+stemming: normalizing the tense eg ran run stem word is run
+but universal university, we cannot say that universe is the stem
+lemmatization: takes a token and learns its meaning thro dictionary definition from there we can derive the lem or root word
+eg for better good is the lem
+
+Part of Speech Tagging
+NER - Named Entity Recognition: for a given token is there any entity associated with like Visva is associated with Name, Madurai to place
