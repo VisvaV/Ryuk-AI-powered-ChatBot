@@ -100,15 +100,15 @@ Ryuk-Chatbot/
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/Ryuk-Chatbot.git
+git clone https://github.com/VisvaV/Ryuk-Chatbot.git
 cd Ryuk-Chatbot
 ```
 
 ### Create Virtual Environment
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+python -m venv venv 
+venv\Scripts\activate
 ```
 
 ### Install Dependencies
