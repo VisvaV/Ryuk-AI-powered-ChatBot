@@ -131,8 +131,6 @@ Replace `your_api_key_here` with your actual Gemini API key.
 python app.py
 ```
 
-Visit: [http://localhost:5000](http://localhost:5000)
-
 ## Usage
 
 ### Upload a Document
