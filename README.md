@@ -35,23 +35,7 @@ Ryuk is an AI-powered chatbot built using Flask, Gemini AI, and Retrieval-Augmen
 
 * **Git and GitHub:** Version control and repository hosting.
 * **Python Virtual Environment:** Dependency management.
-
-## Project Structure
-
-```
-Ryuk-Chatbot/
-├── app.py                 # Main Flask application
-├── requirements.txt       # Python dependencies
-├── static/
-│   ├── css/
-│   │   └── style.css      # UI styles and animations
-│   └── js/
-│       └── script.js      # Chat functionality
-├── templates/
-│   └── index.html         # Main HTML interface
-└── README.md              # Project documentation
-```
-
+  
 ## How It Works
 
 ### 1. Document Processing and Embedding
@@ -88,12 +72,6 @@ Ryuk-Chatbot/
 ## Screenshots
 
 ![Alt text](screenshots/ss1.png)
-
-## Prerequisites
-
-* Python 3.8 or higher
-* Git
-* Gemini API key (via Google Cloud)
 
 ## Setup Instructions
 
@@ -174,14 +152,6 @@ python app.py
 * **Gemini Dependency:** Requires API key and internet.
 * **No Authentication:** No user login or sessions.
 
-## Future Improvements
-
-* Add database for persistent embeddings.
-* Implement login system.
-* Support more file types (e.g., images with OCR).
-* UI theme customization.
-* Better error display to users.
-
 ## Contributing
 
 1. Fork the repository.
@@ -189,7 +159,3 @@ python app.py
 3. Commit changes: `git commit -m "Add feature-name"`
 4. Push: `git push origin feature-name`
 5. Open a pull request with details.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
